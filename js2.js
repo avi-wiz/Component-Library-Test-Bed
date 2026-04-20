@@ -184,7 +184,7 @@ const renderDonut = (data) => {
         </ResponsiveContainer>
         {centerLabel && (
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center', pointerEvents: 'none' }}>
-            <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 20, fontWeight: 800, color: 'var(--text)', lineHeight: 1 }}>{centerLabel.value}</div>
+            <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 20, fontWeight: 800, color: 'var(--text)', lineHeight: 1 }}>{centerLabel.value}</div>
             <div style={{ fontSize: 9.5, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace', marginTop: 3 }}>{centerLabel.subtitle}</div>
           </div>
         )}
@@ -255,7 +255,7 @@ const renderGauge = (data) => {
           return <path key={i} d={arc(ta1, ta2)} fill="none" stroke={t.color + '25'} strokeWidth={sw} />;
         })}
         <path d={arc(-180, fillA)} fill="none" stroke={fillColor} strokeWidth={sw} strokeLinecap="round" />
-        <text x={cx} y={cy - 10} textAnchor="middle" fill="var(--text)" fontSize={28} fontWeight={800} fontFamily="Syne,sans-serif">{fv(value)}</text>
+        <text x={cx} y={cy - 10} textAnchor="middle" fill="var(--text)" fontSize={28} fontWeight={800} fontFamily="Satoshi,sans-serif">{fv(value)}</text>
         <text x={cx} y={cy + 10} textAnchor="middle" fill="var(--text3)" fontSize={11} fontFamily="JetBrains Mono,monospace">{label}</text>
         <text x={35} y={cy + 10} textAnchor="middle" fill="var(--text3)" fontSize={10}>{fv(0)}</text>
         <text x={265} y={cy + 10} textAnchor="middle" fill="var(--text3)" fontSize={10}>{fv(max)}</text>
@@ -282,7 +282,7 @@ const renderSparkline = (data) => {
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 20 }}>
         {[{ l: 'Current', v: last, c: 'var(--text)' }, { l: 'Peak', v: max, c: '#22c78a' }, { l: 'Trough', v: min, c: '#ef4444' }, { l: 'Trend', v: last >= first ? '▲ Up' : '▼ Down', c: last >= first ? '#22c78a' : '#ef4444' }].map((s, i) => (
           <div key={i} style={{ background: '#181b23', border: '1px solid var(--border)', borderRadius: 10, padding: '12px 16px' }}>
-            <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 20, fontWeight: 800, color: s.c }}>{typeof s.v === 'number' ? s.v.toLocaleString() : s.v}</div>
+            <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 20, fontWeight: 800, color: s.c }}>{typeof s.v === 'number' ? s.v.toLocaleString() : s.v}</div>
             <div style={{ fontSize: 9.5, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace', marginTop: 3 }}>{s.l}</div>
           </div>
         ))}

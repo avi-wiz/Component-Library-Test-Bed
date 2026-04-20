@@ -48,7 +48,7 @@ const renderPermissionMatrix = (data) => {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-        <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 16, fontWeight: 800 }}>{roleName}</div>
+        <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 16, fontWeight: 800 }}>{roleName}</div>
         <StatusBadge label="Role" variant="special" size="sm" />
       </div>
       {modules.map((mod, mi) => (
@@ -92,7 +92,7 @@ const renderImportExportProgress = (data) => {
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
             <span style={{ fontSize: 18 }}>{opIcon}</span>
-            <span style={{ fontFamily: 'Syne,sans-serif', fontSize: 15, fontWeight: 700, textTransform: 'capitalize' }}>{operation} — {entity}</span>
+            <span style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 15, fontWeight: 700, textTransform: 'capitalize' }}>{operation} — {entity}</span>
           </div>
           <div style={{ fontSize: 11, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace' }}>{(details && details.fileName)}</div>
         </div>
@@ -139,10 +139,10 @@ const renderSegmentDefinition = (data) => {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
-        <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 16, fontWeight: 800 }}>{segmentName}</div>
+        <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 16, fontWeight: 800 }}>{segmentName}</div>
         <StatusBadge label={segmentType} variant="info" size="sm" />
         <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
-          <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 24, fontWeight: 800, color: '#5b6af0' }}>{(memberCount ? memberCount.toLocaleString() : '0')}</div>
+          <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 24, fontWeight: 800, color: '#5b6af0' }}>{(memberCount ? memberCount.toLocaleString() : '0')}</div>
           <div style={{ fontSize: 9.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace' }}>MEMBERS</div>
         </div>
       </div>
@@ -177,7 +177,7 @@ const renderDiscountSummary = (data) => {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
-        <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 17, fontWeight: 800 }}>{name}</div>
+        <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 17, fontWeight: 800 }}>{name}</div>
         {status && <StatusBadge {...status} />}
         <StatusBadge label={type} variant="info" size="sm" />
       </div>
@@ -219,7 +219,7 @@ const renderWorkflowStatus = (data) => {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
-        <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 16, fontWeight: 800 }}>{workflowName}</div>
+        <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 16, fontWeight: 800 }}>{workflowName}</div>
         {status && <StatusBadge {...status} />}
       </div>
       <div style={{ fontSize: 11, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', marginBottom: 24 }}>
@@ -254,7 +254,7 @@ const renderRecurringPayment = (data) => {
     <div style={{ background: '#181b23', border: '1px solid #252935', borderRadius: 12, padding: '18px 20px' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 14, flexWrap: 'wrap', gap: 8 }}>
         <div>
-          <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 15, fontWeight: 700, marginBottom: 3 }}>{name}</div>
+          <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 15, fontWeight: 700, marginBottom: 3 }}>{name}</div>
           <div style={{ fontSize: 12, color: '#5a6075' }}>{customer}</div>
         </div>
         {status && <StatusBadge {...status} />}
@@ -267,7 +267,7 @@ const renderRecurringPayment = (data) => {
         ].map((s, i) => (
           <div key={i}>
             <div style={{ fontSize: 9.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', marginBottom: 3, textTransform: 'uppercase', letterSpacing: .6 }}>{s.lbl}</div>
-            <div style={{ fontSize: s.big ? 20 : 13, fontWeight: s.big ? 800 : 600, color: '#e8eaf0', fontFamily: s.big ? 'Syne,sans-serif' : undefined }}>{s.v}</div>
+            <div style={{ fontSize: s.big ? 20 : 13, fontWeight: s.big ? 800 : 600, color: '#e8eaf0', fontFamily: s.big ? 'Satoshi,sans-serif' : undefined }}>{s.v}</div>
           </div>
         ))}
       </div>

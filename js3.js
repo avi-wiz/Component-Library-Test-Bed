@@ -20,7 +20,7 @@ const renderMetricCardRow = (data) => {
   const { title, cards = [] } = data;
   return (
     <div>
-      {title && <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 15, fontWeight: 700, marginBottom: 16 }}>{title}</div>}
+      {title && <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 15, fontWeight: 700, marginBottom: 16 }}>{title}</div>}
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
         {cards.map((c, i) => {
           const tc = (c.trend && c.trend.direction === 'up') ? 'var(--success)' : (c.trend && c.trend.direction === 'down') ? 'var(--danger)' : 'var(--text2)';
@@ -48,7 +48,7 @@ const renderEntityCard = (data) => {
       <div style={{ background: 'var(--surface2)', padding: '14px 16px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
         <div>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: 11, color: 'var(--text3)', marginBottom: 3 }}>{(data.entityType ? data.entityType.toUpperCase() : '')}</div>
-          <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 16, fontWeight: 700 }}>{(header && header.title)}</div>
+          <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 16, fontWeight: 700 }}>{(header && header.title)}</div>
           <div style={{ fontSize: 11, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace', marginTop: 2 }}>{(header && header.id)}</div>
         </div>
         {(header && header.status) && <StatusBadge {...header.status} />}
@@ -163,7 +163,7 @@ const renderCustomer360 = (data) => {
       </div>}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
         <div>
-          <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 17, fontWeight: 800, marginBottom: 2 }}>{(profile && profile.name)}</div>
+          <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 17, fontWeight: 800, marginBottom: 2 }}>{(profile && profile.name)}</div>
           <div style={{ fontSize: 11, fontFamily: 'JetBrains Mono,monospace', color: 'var(--text3)', marginBottom: 10 }}>{(profile && profile.customerId)} · {(profile && profile.type)}</div>
           {[['Sales Rep', (profile && profile.salesRep)], ['Price List', (profile && profile.priceList)], ['Territory', (profile && profile.territory)]].map(([k, v]) => (
             <div key={k} style={{ display: 'flex', gap: 10, fontSize: 12, marginBottom: 5 }}>
@@ -180,7 +180,7 @@ const renderCustomer360 = (data) => {
         {metrics && metrics.cards && metrics.cards.map((c, i) => (
           <div key={i} style={{ background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 8, padding: '10px 14px', flex: '1 1 120px' }}>
             <div style={{ fontSize: 9.5, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace', marginBottom: 4, textTransform: 'uppercase' }}>{c.label}</div>
-            <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 17, fontWeight: 800, color: 'var(--text)' }}>{c.format ? formatVal(c.value, c.format) : c.value}</div>
+            <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 17, fontWeight: 800, color: 'var(--text)' }}>{c.format ? formatVal(c.value, c.format) : c.value}</div>
           </div>
         ))}
       </div>
@@ -243,7 +243,7 @@ const renderProductGrid = (data) => {
               <div className="product-name" style={{ marginTop: 4 }}>{p.name}</div>
               <div className="product-sku">{p.skuId}</div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-                <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 14, fontWeight: 800 }}>${((p.price && (p.price.sale || p.price.base)) || 0).toLocaleString()}</div>
+                <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 14, fontWeight: 800 }}>${((p.price && (p.price.sale || p.price.base)) || 0).toLocaleString()}</div>
                 {(p.price && p.price.sale) && <div style={{ fontSize: 10.5, color: 'var(--text3)', textDecoration: 'line-through' }}>${p.price.base}</div>}
               </div>
               <div style={{ fontSize: 10, color: (p.availability && sc[p.availability.status]) || 'var(--text2)', fontWeight: 600 }}>{(p.availability && sl[p.availability.status]) || ''}</div>
@@ -351,7 +351,7 @@ const renderCartSummary = (data) => {
                 <span>{k}</span><span style={{ color: v < 0 ? 'var(--success)' : 'var(--text)' }}>{v < 0 ? '-' : ''}${Math.abs(v).toLocaleString()}</span>
               </div>
             ))}
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 800, padding: '8px 0', fontFamily: 'Syne,sans-serif' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 800, padding: '8px 0', fontFamily: 'Satoshi,sans-serif' }}>
               <span>Total</span><span>${(summary.total ? summary.total.toLocaleString() : '0')}</span>
             </div>
           </div>

@@ -8,123 +8,141 @@
 
 :root {
   /* ── Dark UI Surfaces (unchanged — these are the app shell) ── */
-  --bg:       #0a0b0f;
-  --surface:  #111318;
+  --bg: #0a0b0f;
+  --surface: #111318;
   --surface2: #181b23;
-  --border:   #252935;
-  --border2:  #2e3444;
+  --border: #252935;
+  --border2: #2e3444;
 
   /* ── Primary Brand — Green (Color Guidelines: primary scale) ── */
   --primary-100: #01442C;
-  --primary-90:  #096645;
-  --primary-80:  #16885F;  /* Main */
-  --primary-70:  #28AA7B;
-  --primary-60:  #3FCC99;
-  --primary-50:  #5BEEB9;
-  --primary-40:  #84FFD3;
-  --primary-30:  #A8FFE0;
-  --primary-20:  #CBFFEC;
-  --primary-10:  #EFFFF9;
+  --primary-90: #096645;
+  --primary-80: #16885F;
+  /* Main */
+  --primary-70: #28AA7B;
+  --primary-60: #3FCC99;
+  --primary-50: #5BEEB9;
+  --primary-40: #84FFD3;
+  --primary-30: #A8FFE0;
+  --primary-20: #CBFFEC;
+  --primary-10: #EFFFF9;
 
   /* ── Secondary — Neutral/Grey (Color Guidelines: secondary scale) ── */
   --secondary-100: #2E3643;
-  --secondary-90:  #424D5C;
-  --secondary-80:  #586476;
-  --secondary-70:  #6F7C8F;
-  --secondary-60:  #8895A9;
-  --secondary-50:  #A2AFC2;
-  --secondary-40:  #BECADC;
-  --secondary-30:  #DBE6F5;
-  --secondary-20:  #EAF0F9;
-  --secondary-10:  #FAFBFD;
+  --secondary-90: #424D5C;
+  --secondary-80: #586476;
+  --secondary-70: #6F7C8F;
+  --secondary-60: #8895A9;
+  --secondary-50: #A2AFC2;
+  --secondary-40: #BECADC;
+  --secondary-30: #DBE6F5;
+  --secondary-20: #EAF0F9;
+  --secondary-10: #FAFBFD;
 
   /* ── Error — Red/Orange (Color Guidelines: error scale) ── */
   --error-100: #481702;
-  --error-90:  #5D1C00;
-  --error-80:  #D74C10;  /* Main */
-  --error-70:  #AE3500;
-  --error-50:  #DF7040;
-  --error-40:  #E79470;
-  --error-30:  #EFB79F;
-  --error-20:  #F7DBCF;
-  --error-10:  #FBEDE7;
+  --error-90: #5D1C00;
+  --error-80: #D74C10;
+  /* Main */
+  --error-70: #AE3500;
+  --error-50: #DF7040;
+  --error-40: #E79470;
+  --error-30: #EFB79F;
+  --error-20: #F7DBCF;
+  --error-10: #FBEDE7;
 
   /* ── Warning — Yellow/Orange (Color Guidelines: warning scale) ── */
   --warning-100: #684500;
-  --warning-90:  #8A5D05;
-  --warning-80:  #F0AF30;  /* Main */
-  --warning-70:  #CE921E;
-  --warning-50:  #F3BF59;
-  --warning-40:  #F6CF83;
-  --warning-30:  #F9DFAC;
-  --warning-20:  #FCEFD6;
-  --warning-10:  #FEF7EA;
+  --warning-90: #8A5D05;
+  --warning-80: #F0AF30;
+  /* Main */
+  --warning-70: #CE921E;
+  --warning-50: #F3BF59;
+  --warning-40: #F6CF83;
+  --warning-30: #F9DFAC;
+  --warning-20: #FCEFD6;
+  --warning-10: #FEF7EA;
 
   /* ── Info — Blue (Color Guidelines: info scale) ── */
   --info-100: #1C3C6C;
-  --info-90:  #284F89;
-  --info-80:  #6BA6FE;  /* Main */
-  --info-70:  #4578C4;
-  --info-50:  #88B8FE;
-  --info-40:  #A6C9FE;
-  --info-30:  #C4DBFF;
-  --info-20:  #E1EDFF;
-  --info-10:  #F0F6FF;
+  --info-90: #284F89;
+  --info-80: #6BA6FE;
+  /* Main */
+  --info-70: #4578C4;
+  --info-50: #88B8FE;
+  --info-40: #A6C9FE;
+  --info-30: #C4DBFF;
+  --info-20: #E1EDFF;
+  --info-10: #F0F6FF;
 
   /* ── Success — Yellow-Green (Color Guidelines: success scale) ── */
   --success-100: #212D01;
-  --success-90:  #2C3C01;
-  --success-80:  #7DA50E;  /* Main */
-  --success-70:  #5B7C00;
-  --success-50:  #97B73E;
-  --success-40:  #B1C96E;
-  --success-30:  #CBDB9F;
-  --success-20:  #E5EDCF;
-  --success-10:  #F2F6E7;
+  --success-90: #2C3C01;
+  --success-80: #7DA50E;
+  /* Main */
+  --success-70: #5B7C00;
+  --success-50: #97B73E;
+  --success-40: #B1C96E;
+  --success-30: #CBDB9F;
+  --success-20: #E5EDCF;
+  --success-10: #F2F6E7;
 
   /* ── Neutral Greys (Color Guidelines: neutralPalette) ── */
-  --neutral-dark:         #002D1D;
-  --neutral-charcoal:     #25282D;
-  --neutral-medium-grey:  #4F555D;
-  --neutral-grey:         #676D77;
-  --neutral-light-grey:   #9AA0AA;
-  --neutral-very-light:   #B5BBC3;
-  --neutral-palest:       #D1D6DD;
-  --neutral-almost-white1:#EEF1F6;
-  --neutral-almost-white2:#F2F4F7;
-  --neutral-off-white:    #F7F8F8;
-  --neutral-white:        #FAFAFA;
+  --neutral-dark: #002D1D;
+  --neutral-charcoal: #25282D;
+  --neutral-medium-grey: #4F555D;
+  --neutral-grey: #676D77;
+  --neutral-light-grey: #9AA0AA;
+  --neutral-very-light: #B5BBC3;
+  --neutral-palest: #D1D6DD;
+  --neutral-almost-white1: #EEF1F6;
+  --neutral-almost-white2: #F2F4F7;
+  --neutral-off-white: #F7F8F8;
+  --neutral-white: #FAFAFA;
 
   /* ── Semantic Aliases (mapped from Color Guidelines scales) ── */
-  --accent:  var(--primary-80);   /* #16885F — brand green main */
-  --accent2: var(--primary-70);   /* #28AA7B — brand green lighter */
-  --accent3: var(--primary-90);   /* #096645 — brand green darker */
-  --success: var(--success-80);   /* #7DA50E */
-  --warn:    var(--warning-80);   /* #F0AF30 */
-  --danger:  var(--error-80);     /* #D74C10 */
-  --info:    var(--info-80);      /* #6BA6FE */
+  --accent: var(--primary-80);
+  /* #16885F — brand green main */
+  --accent2: var(--primary-70);
+  /* #28AA7B — brand green lighter */
+  --accent3: var(--primary-90);
+  /* #096645 — brand green darker */
+  --success: var(--success-80);
+  /* #7DA50E */
+  --warn: var(--warning-80);
+  /* #F0AF30 */
+  --danger: var(--error-80);
+  /* #D74C10 */
+  --info: var(--info-80);
+  /* #6BA6FE */
 
   /* ── Text ── */
-  --text:  #e8eaf0;
+  --text: #e8eaf0;
   --text2: #8b92a8;
   --text3: #5a6075;
 
   /* ── Typography ── */
-  --mono:    'Satoshi', sans-serif;
-  --sans:    'Satoshi', sans-serif;
+  --mono: 'Satoshi', sans-serif;
+  --sans: 'Satoshi', sans-serif;
   --display: 'Satoshi', sans-serif;
 }
 
 /* ── Light Mode Overrides ── */
 [data-theme="light"] {
-  --bg:       #F7F8F8; /* --neutral-off-white */
-  --surface:  #FFFFFF;
+  --bg: #F7F8F8;
+  /* --neutral-off-white */
+  --surface: #FFFFFF;
   --surface2: #f0f2f5;
-  --border:   #DBE6F5; /* --secondary-30 */
-  --border2:  #BECADC; /* --secondary-40 */
-  --text:     #2E3643; /* --secondary-100 */
-  --text2:    #586476; /* --secondary-80 */
-  --text3:    #8895A9; /* --secondary-60 */
+  --border: #DBE6F5;
+  /* --secondary-30 */
+  --border2: #BECADC;
+  /* --secondary-40 */
+  --text: #2E3643;
+  /* --secondary-100 */
+  --text2: #586476;
+  /* --secondary-80 */
+  --text3: #8895A9;
+  /* --secondary-60 */
 
   /* We shift the accent colors slightly for better contrast on light backgrounds if needed, 
      but primary-80 green holds up well. */

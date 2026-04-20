@@ -364,7 +364,7 @@ const renderDonut = (data) => {
         </ResponsiveContainer>
         {centerLabel && (
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center', pointerEvents: 'none' }}>
-            <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 20, fontWeight: 800, color: '#e8eaf0', lineHeight: 1 }}>{centerLabel.value}</div>
+            <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 20, fontWeight: 800, color: '#e8eaf0', lineHeight: 1 }}>{centerLabel.value}</div>
             <div style={{ fontSize: 9.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', marginTop: 3 }}>{centerLabel.subtitle}</div>
           </div>
         )}
@@ -435,7 +435,7 @@ const renderGauge = (data) => {
           return <path key={i} d={arc(ta1, ta2)} fill="none" stroke={t.color + '25'} strokeWidth={sw} />;
         })}
         <path d={arc(-180, fillA)} fill="none" stroke={fillColor} strokeWidth={sw} strokeLinecap="round" />
-        <text x={cx} y={cy + 8} textAnchor="middle" fill="#e8eaf0" fontSize={26} fontWeight={800} fontFamily="Syne,sans-serif">{fv(value)}</text>
+        <text x={cx} y={cy + 8} textAnchor="middle" fill="#e8eaf0" fontSize={26} fontWeight={800} fontFamily="Satoshi,sans-serif">{fv(value)}</text>
         <text x={cx} y={cy + 24} textAnchor="middle" fill="#5a6075" fontSize={10.5} fontFamily="JetBrains Mono,monospace">{label}</text>
         <text x={35} y={cy + 10} textAnchor="middle" fill="#5a6075" fontSize={10}>{fv(0)}</text>
         <text x={265} y={cy + 10} textAnchor="middle" fill="#5a6075" fontSize={10}>{fv(max)}</text>
@@ -462,7 +462,7 @@ const renderSparkline = (data) => {
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 20 }}>
         {[{ l: 'Current', v: last, c: '#e8eaf0' }, { l: 'Peak', v: max, c: '#22c78a' }, { l: 'Trough', v: min, c: '#ef4444' }, { l: 'Trend', v: last >= first ? '▲ Up' : '▼ Down', c: last >= first ? '#22c78a' : '#ef4444' }].map((s, i) => (
           <div key={i} style={{ background: '#181b23', border: '1px solid #252935', borderRadius: 10, padding: '12px 16px' }}>
-            <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 20, fontWeight: 800, color: s.c }}>{typeof s.v === 'number' ? s.v.toLocaleString() : s.v}</div>
+            <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 20, fontWeight: 800, color: s.c }}>{typeof s.v === 'number' ? s.v.toLocaleString() : s.v}</div>
             <div style={{ fontSize: 9.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', marginTop: 3 }}>{s.l}</div>
           </div>
         ))}
@@ -615,7 +615,7 @@ const renderMetricCardRow = (data) => {
   const { title, cards = [] } = data;
   return (
     <div>
-      {title && <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 15, fontWeight: 700, marginBottom: 16 }}>{title}</div>}
+      {title && <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 15, fontWeight: 700, marginBottom: 16 }}>{title}</div>}
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
         {cards.map((c, i) => {
           const tc = c.trend?.direction === 'up' ? '#22c78a' : c.trend?.direction === 'down' ? '#ef4444' : '#8b92a8';
@@ -643,7 +643,7 @@ const renderEntityCard = (data) => {
       <div style={{ background: '#181b23', padding: '14px 16px', borderBottom: '1px solid #252935', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
         <div>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: 11, color: '#5a6075', marginBottom: 3 }}>{data.entityType?.toUpperCase()}</div>
-          <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 16, fontWeight: 700 }}>{header?.title}</div>
+          <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 16, fontWeight: 700 }}>{header?.title}</div>
           <div style={{ fontSize: 11, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', marginTop: 2 }}>{header?.id}</div>
         </div>
         {header?.status && <StatusBadge {...header.status} />}
@@ -758,7 +758,7 @@ const renderCustomer360 = (data) => {
       </div>}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
         <div>
-          <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 17, fontWeight: 800, marginBottom: 2 }}>{profile?.name}</div>
+          <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 17, fontWeight: 800, marginBottom: 2 }}>{profile?.name}</div>
           <div style={{ fontSize: 11, fontFamily: 'JetBrains Mono,monospace', color: '#5a6075', marginBottom: 10 }}>{profile?.customerId} · {profile?.type}</div>
           {[['Sales Rep', profile?.salesRep], ['Price List', profile?.priceList], ['Territory', profile?.territory]].map(([k, v]) => (
             <div key={k} style={{ display: 'flex', gap: 10, fontSize: 12, marginBottom: 5 }}>
@@ -775,7 +775,7 @@ const renderCustomer360 = (data) => {
         {(metrics?.cards || []).map((c, i) => (
           <div key={i} style={{ background: '#181b23', border: '1px solid #252935', borderRadius: 8, padding: '10px 14px', flex: '1 1 120px' }}>
             <div style={{ fontSize: 9.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', marginBottom: 4, textTransform: 'uppercase' }}>{c.label}</div>
-            <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 17, fontWeight: 800, color: '#e8eaf0' }}>{c.format ? formatVal(c.value, c.format) : c.value}</div>
+            <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 17, fontWeight: 800, color: '#e8eaf0' }}>{c.format ? formatVal(c.value, c.format) : c.value}</div>
           </div>
         ))}
       </div>
@@ -838,7 +838,7 @@ const renderProductGrid = (data) => {
               <div className="product-name" style={{ marginTop: 4 }}>{p.name}</div>
               <div className="product-sku">{p.skuId}</div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-                <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 14, fontWeight: 800 }}>${(p.price?.sale || p.price?.base || 0).toLocaleString()}</div>
+                <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 14, fontWeight: 800 }}>${(p.price?.sale || p.price?.base || 0).toLocaleString()}</div>
                 {p.price?.sale && <div style={{ fontSize: 10.5, color: '#5a6075', textDecoration: 'line-through' }}>${p.price.base}</div>}
               </div>
               <div style={{ fontSize: 10, color: sc[p.availability?.status] || '#8b92a8', fontWeight: 600 }}>{sl[p.availability?.status]}</div>
@@ -946,7 +946,7 @@ const renderCartSummary = (data) => {
                 <span>{k}</span><span style={{ color: v < 0 ? '#22c78a' : '#e8eaf0' }}>{v < 0 ? '-' : ''}${Math.abs(v).toLocaleString()}</span>
               </div>
             ))}
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 800, padding: '8px 0', fontFamily: 'Syne,sans-serif' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontWeight: 800, padding: '8px 0', fontFamily: 'Satoshi,sans-serif' }}>
               <span>Total</span><span>${summary.total?.toLocaleString()}</span>
             </div>
           </div>
@@ -1093,7 +1093,7 @@ const renderPermissionMatrix = (data) => {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-        <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 16, fontWeight: 800 }}>{roleName}</div>
+        <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 16, fontWeight: 800 }}>{roleName}</div>
         <StatusBadge label="Role" variant="special" size="sm" />
       </div>
       {modules.map((mod, mi) => (
@@ -1137,7 +1137,7 @@ const renderImportExportProgress = (data) => {
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
             <span style={{ fontSize: 18 }}>{opIcon}</span>
-            <span style={{ fontFamily: 'Syne,sans-serif', fontSize: 15, fontWeight: 700, textTransform: 'capitalize' }}>{operation} — {entity}</span>
+            <span style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 15, fontWeight: 700, textTransform: 'capitalize' }}>{operation} — {entity}</span>
           </div>
           <div style={{ fontSize: 11, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace' }}>{details?.fileName}</div>
         </div>
@@ -1184,10 +1184,10 @@ const renderSegmentDefinition = (data) => {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
-        <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 16, fontWeight: 800 }}>{segmentName}</div>
+        <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 16, fontWeight: 800 }}>{segmentName}</div>
         <StatusBadge label={segmentType} variant="info" size="sm" />
         <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
-          <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 24, fontWeight: 800, color: '#5b6af0' }}>{memberCount?.toLocaleString()}</div>
+          <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 24, fontWeight: 800, color: '#5b6af0' }}>{memberCount?.toLocaleString()}</div>
           <div style={{ fontSize: 9.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace' }}>MEMBERS</div>
         </div>
       </div>
@@ -1222,7 +1222,7 @@ const renderDiscountSummary = (data) => {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
-        <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 17, fontWeight: 800 }}>{name}</div>
+        <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 17, fontWeight: 800 }}>{name}</div>
         {status && <StatusBadge {...status} />}
         <StatusBadge label={type} variant="info" size="sm" />
       </div>
@@ -1264,7 +1264,7 @@ const renderWorkflowStatus = (data) => {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
-        <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 16, fontWeight: 800 }}>{workflowName}</div>
+        <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 16, fontWeight: 800 }}>{workflowName}</div>
         {status && <StatusBadge {...status} />}
       </div>
       <div style={{ fontSize: 11, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', marginBottom: 24 }}>
@@ -1299,7 +1299,7 @@ const renderRecurringPayment = (data) => {
     <div style={{ background: '#181b23', border: '1px solid #252935', borderRadius: 12, padding: '18px 20px' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 14, flexWrap: 'wrap', gap: 8 }}>
         <div>
-          <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 15, fontWeight: 700, marginBottom: 3 }}>{name}</div>
+          <div style={{ fontFamily: 'Satoshi,sans-serif', fontSize: 15, fontWeight: 700, marginBottom: 3 }}>{name}</div>
           <div style={{ fontSize: 12, color: '#5a6075' }}>{customer}</div>
         </div>
         {status && <StatusBadge {...status} />}
@@ -1312,7 +1312,7 @@ const renderRecurringPayment = (data) => {
         ].map((s, i) => (
           <div key={i}>
             <div style={{ fontSize: 9.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', marginBottom: 3, textTransform: 'uppercase', letterSpacing: .6 }}>{s.lbl}</div>
-            <div style={{ fontSize: s.big ? 20 : 13, fontWeight: s.big ? 800 : 600, color: '#e8eaf0', fontFamily: s.big ? 'Syne,sans-serif' : undefined }}>{s.v}</div>
+            <div style={{ fontSize: s.big ? 20 : 13, fontWeight: s.big ? 800 : 600, color: '#e8eaf0', fontFamily: s.big ? 'Satoshi,sans-serif' : undefined }}>{s.v}</div>
           </div>
         ))}
       </div>

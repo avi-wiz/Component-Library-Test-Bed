@@ -110,9 +110,9 @@
   --text3: #5a6075;
 
   /* ── Typography ── */
-  --mono:    'JetBrains Mono', monospace;
-  --sans:    'Poppins', sans-serif;
-  --display: 'Syne', sans-serif;
+  --mono:    'Satoshi', sans-serif;
+  --sans:    'Satoshi', sans-serif;
+  --display: 'Satoshi', sans-serif;
 }
 
 /* ── Light Mode Overrides ── */

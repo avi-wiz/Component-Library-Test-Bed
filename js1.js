@@ -1,13 +1,26 @@
-// ── Palette & Constants ───────────────────────────────────────────────────
-const COLORS = ['#5b6af0', '#22c78a', '#f59e0b', '#ef4444', '#a78bfa', '#38bdf8', '#fb923c', '#e879f9'];
+// ── Palette & Constants — sourced from Color Guidelines.json ─────────────
+//   primary-80:#16885F  primary-70:#28AA7B  primary-60:#3FCC99
+//   warning-80:#F0AF30  error-80:#D74C10    info-80:#6BA6FE
+//   success-80:#7DA50E  primary-50:#5BEEB9  info-50:#88B8FE
+const COLORS = [
+  '#16885F', // primary-80 (brand green)
+  '#28AA7B', // primary-70
+  '#F0AF30', // warning-80
+  '#D74C10', // error-80
+  '#6BA6FE', // info-80
+  '#7DA50E', // success-80
+  '#3FCC99', // primary-60
+  '#88B8FE', // info-50
+];
 const BADGE_COLORS = {
-  success: { bg: 'rgba(34,199,138,.1)', text: '#22c78a', border: 'rgba(34,199,138,.2)' },
-  warning: { bg: 'rgba(245,158,11,.1)', text: '#f59e0b', border: 'rgba(245,158,11,.2)' },
-  danger: { bg: 'rgba(239,68,68,.1)', text: '#ef4444', border: 'rgba(239,68,68,.2)' },
-  info: { bg: 'rgba(56,189,248,.1)', text: '#38bdf8', border: 'rgba(56,189,248,.2)' },
-  neutral: { bg: 'rgba(139,146,168,.1)', text: '#8b92a8', border: 'rgba(139,146,168,.2)' },
-  special: { bg: 'rgba(167,139,250,.1)', text: '#a78bfa', border: 'rgba(167,139,250,.2)' },
+  success: { bg: 'rgba(22,136,95,.12)',  text: '#28AA7B', border: 'rgba(22,136,95,.25)'  }, // primary green
+  warning: { bg: 'rgba(240,175,48,.12)', text: '#F0AF30', border: 'rgba(240,175,48,.25)' }, // warning-80
+  danger:  { bg: 'rgba(215,76,16,.12)',  text: '#D74C10', border: 'rgba(215,76,16,.25)'  }, // error-80
+  info:    { bg: 'rgba(107,166,254,.12)',text: '#6BA6FE', border: 'rgba(107,166,254,.25)'}, // info-80
+  neutral: { bg: 'rgba(136,149,169,.1)', text: '#8895A9', border: 'rgba(136,149,169,.2)' }, // secondary-60
+  special: { bg: 'rgba(125,165,14,.12)', text: '#7DA50E', border: 'rgba(125,165,14,.25)' }, // success-80
 };
+
 
 // ── AW-* Action Widget Stub ── v1.0 ──────────────────────────────────────
 // Each action: { label, variant:'primary'|'secondary'|'danger'|'ghost', actionType?, href?, icon? }
@@ -34,10 +47,10 @@ class WidgetErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: 12, border: '1px solid #ef4444', borderRadius: 8, background: '#ef444410', color: '#ef4444', fontSize: 11, fontFamily: 'monospace' }}>
+        <div style={{ padding: 12, border: '1px solid var(--danger)', borderRadius: 8, background: 'var(--danger)', opacity: 0.1, color: 'var(--danger)', fontSize: 11, fontFamily: 'monospace' }}>
           <b>⚠️ {this.props.name || 'Widget'} Error</b>
-          <div style={{ marginTop: 4 }}>{this.state.error?.message || String(this.state.error)}</div>
-          <div style={{ fontSize: 9, opacity: 0.7, marginTop: 4 }}>{this.state.error?.stack?.split('\n').slice(0, 3).join('\n')}</div>
+          <div style={{ marginTop: 4 }}>{this.state.error && (this.state.error.message || String(this.state.error))}</div>
+          <div style={{ fontSize: 9, opacity: 0.7, marginTop: 4 }}>{this.state.error && this.state.error.stack && this.state.error.stack.split('\n').slice(0, 3).join('\n')}</div>
         </div>
       );
     }
@@ -79,20 +92,19 @@ const SparklineInline = ({ data, color = '#5b6af0', height = 32, showEndDot = tr
 };
 
 const CustomTooltip = ({ active, payload, label }) => {
-  if (!active || !payload?.length) return null;
+  if (!active || !(payload && payload.length)) return null;
   return (
     <div style={{
-      background: '#181b23', border: '1px solid #252935', borderRadius: 8, padding: '9px 13px',
-      fontSize: 12, fontFamily: 'Poppins,sans-serif', boxShadow: '0 8px 32px rgba(0,0,0,.5)', minWidth: 110
+      background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 8, padding: '9px 13px',
+      fontSize: 12, fontFamily: 'Poppins,sans-serif', boxShadow: '0 8px 32px rgba(0,0,0,.2)', minWidth: 110,
+      color: 'var(--text)'
     }}>
-      {label && <div style={{ color: '#8b92a8', marginBottom: 5, fontSize: 10.5, fontFamily: 'JetBrains Mono,monospace' }}>{label}</div>}
+      {label && <div style={{ color: 'var(--text2)', marginBottom: 5, fontSize: 10.5, fontFamily: 'JetBrains Mono,monospace' }}>{label}</div>}
       {payload.map((p, i) => (
-        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 2 }}>
-          <div style={{ width: 7, height: 7, borderRadius: '50%', background: p.color || p.fill, flexShrink: 0 }} />
-          <span style={{ color: '#8b92a8' }}>{(p.name || p.dataKey) + ': '}</span>
-          <span style={{ color: '#e8eaf0', fontWeight: 600 }}>
-            {typeof p.value === 'number' ? p.value.toLocaleString() : p.value}
-          </span>
+        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: i > 0 ? 4 : 0 }}>
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: p.color || p.fill }} />
+          <span style={{ color: 'var(--text2)', flex: 1 }}>{p.name}</span>
+          <span style={{ fontWeight: 700, color: 'var(--text)' }}>{p.value.toLocaleString()}</span>
         </div>
       ))}
     </div>

@@ -50,8 +50,8 @@ const GeoMap = ({ regions, metric, colorScale, mapType }) => {
     (usMap.objects.states.geometries || []).forEach(g => { nameById[g.id] = (g.properties && g.properties.name); });
     svg.selectAll('path').data(features).join('path')
       .attr('d', path)
-      .attr('fill', d => { const n = nameById[d.id] || (d.properties && d.properties.name); return lookup[n] != null ? getColor(lookup[n]) : '#1e2130'; })
-      .attr('stroke', '#252935').attr('stroke-width', 0.5)
+      .attr('fill', d => { const n = nameById[d.id] || (d.properties && d.properties.name); return lookup[n] != null ? getColor(lookup[n]) : 'var(--border)'; })
+      .attr('stroke', 'var(--border)').attr('stroke-width', 0.5)
       .append('title').text(d => { const n = nameById[d.id] || ''; return lookup[n] != null ? `${n}: ${formatVal(lookup[n], 'currency')}` : n; });
   }, [usMap, regions, mapType]);
 
@@ -59,8 +59,8 @@ const GeoMap = ({ regions, metric, colorScale, mapType }) => {
     const W = 600, H = 360;
     return (
       <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', maxHeight: 360 }}>
-        <rect width={W} height={H} rx={8} fill="#12141c" />
-        <text x={W / 2} y={26} textAnchor="middle" fill="#5a6075" fontSize={11} fontFamily="JetBrains Mono">Region Bubble Map — {metric}</text>
+        <rect width={W} height={H} rx={8} fill="var(--surface)" />
+        <text x={W / 2} y={26} textAnchor="middle" fill="var(--text3)" fontSize={11} fontFamily="JetBrains Mono">Region Bubble Map — {metric}</text>
         {regions.map((r, i) => {
           const pos = REGION_POS[r.regionName] || { cx: 0.5, cy: 0.5 };
           const cx = pos.cx * W, cy = pos.cy * H;
@@ -68,21 +68,21 @@ const GeoMap = ({ regions, metric, colorScale, mapType }) => {
           const radius = 12 + t * 38;
           return (
             <g key={i}>
-              <circle cx={cx} cy={cy} r={radius} fill={getColor(r.value)} fillOpacity={0.8} stroke="#252935" strokeWidth={1} />
+              <circle cx={cx} cy={cy} r={radius} fill={getColor(r.value)} fillOpacity={0.8} stroke="var(--border)" strokeWidth={1} />
               <text x={cx} y={cy + 3} textAnchor="middle" fill="#fff" fontSize={Math.max(8, radius * 0.38)} fontWeight={600} fontFamily="Poppins">{r.regionName}</text>
-              <text x={cx} y={cy + radius + 13} textAnchor="middle" fill="#8b92a8" fontSize={9.5} fontFamily="JetBrains Mono">{formatVal(r.value, 'currency')}</text>
+              <text x={cx} y={cy + radius + 13} textAnchor="middle" fill="var(--text2)" fontSize={9.5} fontFamily="JetBrains Mono">{formatVal(r.value, 'currency')}</text>
             </g>
           );
         })}
       </svg>
     );
   }
-  if (loading) return <div style={{ height: 340, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#5a6075', fontSize: 12 }}>Loading US map data…</div>;
+  if (loading) return <div style={{ height: 340, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text3)', fontSize: 12 }}>Loading US map data…</div>;
   if (mapErr) return <div style={{ padding: 16, color: '#fca5a5', fontSize: 12, fontFamily: 'JetBrains Mono', background: 'rgba(239,68,68,.07)', borderRadius: 8, border: '1px solid rgba(239,68,68,.2)' }}>{mapErr}</div>;
   return (
     <div>
       <svg ref={svgRef} viewBox="0 0 600 380" style={{ width: '100%', maxHeight: 380, display: 'block' }} />
-      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 10, fontSize: 10.5, fontFamily: 'JetBrains Mono', color: '#8b92a8' }}>
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 10, fontSize: 10.5, fontFamily: 'JetBrains Mono', color: 'var(--text2)' }}>
         <span>Metric: {metric}</span>
         {regions.map((r, i) => (
           <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -144,7 +144,7 @@ const renderBarChart = (data, cfg) => {
         <YAxis dataKey="category" type="category" width={85} tick={{ fontSize: 11 }} />
         <Tooltip content={<CustomTooltip />} />
         {series ? series.map((s, i) => <Bar key={i} dataKey={s.name} fill={s.color || COLORS[i]} radius={[0, 4, 4, 0]} />)
-          : <Bar dataKey="value" radius={[0, 4, 4, 0]}>{bd.map((d, i) => <Cell key={i} fill={d.color || COLORS[i % COLORS.length]} />)}<LabelList dataKey="value" position="right" formatter={v => fmtY(v)} style={{ fill: '#8b92a8', fontSize: 10.5 }} /></Bar>}
+          : <Bar dataKey="value" radius={[0, 4, 4, 0]}>{bd.map((d, i) => <Cell key={i} fill={d.color || COLORS[i % COLORS.length]} />)}<LabelList dataKey="value" position="right" formatter={v => fmtY(v)} style={{ fill: 'var(--text2)', fontSize: 10.5 }} /></Bar>}
       </BarChart>
     </ResponsiveContainer>
   );
@@ -157,7 +157,7 @@ const renderBarChart = (data, cfg) => {
         <Tooltip content={<CustomTooltip />} />
         <Legend />
         {series ? series.map((s, i) => <Bar key={i} dataKey={s.name} stackId={data.grouping === 'stacked' ? 'a' : undefined} fill={s.color || COLORS[i]} radius={[4, 4, 0, 0]} />)
-          : <Bar dataKey="value" radius={[4, 4, 0, 0]}>{bd.map((d, i) => <Cell key={i} fill={d.color || COLORS[i % COLORS.length]} />)}<LabelList dataKey="value" position="top" formatter={v => fmtY(v)} style={{ fill: '#8b92a8', fontSize: 10.5 }} /></Bar>}
+          : <Bar dataKey="value" radius={[4, 4, 0, 0]}>{bd.map((d, i) => <Cell key={i} fill={d.color || COLORS[i % COLORS.length]} />)}<LabelList dataKey="value" position="top" formatter={v => fmtY(v)} style={{ fill: 'var(--text2)', fontSize: 10.5 }} /></Bar>}
       </BarChart>
     </ResponsiveContainer>
   );
@@ -168,7 +168,7 @@ const renderDonut = (data) => {
   let { segments = [], centerLabel, showLegend = true } = data;
   if (segments.length > 6) {
     const top5 = segments.slice(0, 5), rest = segments.slice(5);
-    segments = [...top5, { label: 'Other', value: rest.reduce((s, d) => s + d.value, 0), color: '#5a6075' }];
+    segments = [...top5, { label: 'Other', value: rest.reduce((s, d) => s + d.value, 0), color: 'var(--text3)' }];
   }
   const total = segments.reduce((s, d) => s + (d.value || 0), 0);
   return (
@@ -184,8 +184,8 @@ const renderDonut = (data) => {
         </ResponsiveContainer>
         {centerLabel && (
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center', pointerEvents: 'none' }}>
-            <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 20, fontWeight: 800, color: '#e8eaf0', lineHeight: 1 }}>{centerLabel.value}</div>
-            <div style={{ fontSize: 9.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', marginTop: 3 }}>{centerLabel.subtitle}</div>
+            <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 20, fontWeight: 800, color: 'var(--text)', lineHeight: 1 }}>{centerLabel.value}</div>
+            <div style={{ fontSize: 9.5, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace', marginTop: 3 }}>{centerLabel.subtitle}</div>
           </div>
         )}
       </div>
@@ -194,9 +194,9 @@ const renderDonut = (data) => {
           {segments.map((s, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div style={{ width: 10, height: 10, borderRadius: 2, background: s.color || COLORS[i % COLORS.length], flexShrink: 0 }} />
-              <span style={{ fontSize: 12, color: '#8b92a8', minWidth: 80 }}>{s.label}</span>
-              <span style={{ fontSize: 12, fontWeight: 600, color: '#e8eaf0', fontFamily: 'JetBrains Mono,monospace' }}>{((s.value / total) * 100).toFixed(1)}%</span>
-              <span style={{ fontSize: 10.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace' }}>({s.value.toLocaleString()})</span>
+              <span style={{ fontSize: 12, color: 'var(--text2)', minWidth: 80 }}>{s.label}</span>
+              <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', fontFamily: 'JetBrains Mono,monospace' }}>{((s.value / total) * 100).toFixed(1)}%</span>
+              <span style={{ fontSize: 10.5, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace' }}>({s.value.toLocaleString()})</span>
             </div>
           ))}
         </div>
@@ -216,7 +216,7 @@ const renderFunnel = (data) => {
     <div style={{ padding: '0 20px' }}>
       {stages.map((s, i) => (
         <div key={i}>
-          {i > 0 && <div style={{ textAlign: 'center', fontSize: 10.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', margin: '4px 0' }}>↓ {s.conversionRate ? `${s.conversionRate}% conversion` : ''}</div>}
+          {i > 0 && <div style={{ textAlign: 'center', fontSize: 10.5, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace', margin: '4px 0' }}>↓ {s.conversionRate ? `${s.conversionRate}% conversion` : ''}</div>}
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}>
             <div style={{ width: `${Math.max((s.value / maxV) * 100, 18)}%`, background: `linear-gradient(135deg,${COLORS[i % COLORS.length]}bb,${COLORS[i % COLORS.length]})`, borderRadius: 8, padding: '10px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ color: '#fff', fontSize: 12, fontWeight: 600 }}>{s.name}</span>
@@ -225,7 +225,7 @@ const renderFunnel = (data) => {
           </div>
         </div>
       ))}
-      <div style={{ textAlign: 'center', fontSize: 10.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', marginTop: 10 }}>Unit: {metric}</div>
+      <div style={{ textAlign: 'center', fontSize: 10.5, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace', marginTop: 10 }}>Unit: {metric}</div>
     </div>
   );
 };
@@ -249,20 +249,20 @@ const renderGauge = (data) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px 0' }}>
       <svg width={300} height={180} viewBox="0 0 300 180" style={{ overflow: 'visible' }}>
-        <path d={arc(-180, 0)} fill="none" stroke="#252935" strokeWidth={sw} strokeLinecap="round" />
+        <path d={arc(-180, 0)} fill="none" stroke="var(--border)" strokeWidth={sw} strokeLinecap="round" />
         {sorted.map((t, i) => {
           const nextObj = sorted[i + 1], nv = (nextObj && nextObj.value != null ? nextObj.value : max), ta1 = startA + (t.value / max) * totalA, ta2 = startA + (nv / max) * totalA;
           return <path key={i} d={arc(ta1, ta2)} fill="none" stroke={t.color + '25'} strokeWidth={sw} />;
         })}
         <path d={arc(-180, fillA)} fill="none" stroke={fillColor} strokeWidth={sw} strokeLinecap="round" />
-        <text x={cx} y={cy - 10} textAnchor="middle" fill="#e8eaf0" fontSize={28} fontWeight={800} fontFamily="Syne,sans-serif">{fv(value)}</text>
-        <text x={cx} y={cy + 10} textAnchor="middle" fill="#5a6075" fontSize={11} fontFamily="JetBrains Mono,monospace">{label}</text>
-        <text x={35} y={cy + 10} textAnchor="middle" fill="#5a6075" fontSize={10}>{fv(0)}</text>
-        <text x={265} y={cy + 10} textAnchor="middle" fill="#5a6075" fontSize={10}>{fv(max)}</text>
+        <text x={cx} y={cy - 10} textAnchor="middle" fill="var(--text)" fontSize={28} fontWeight={800} fontFamily="Syne,sans-serif">{fv(value)}</text>
+        <text x={cx} y={cy + 10} textAnchor="middle" fill="var(--text3)" fontSize={11} fontFamily="JetBrains Mono,monospace">{label}</text>
+        <text x={35} y={cy + 10} textAnchor="middle" fill="var(--text3)" fontSize={10}>{fv(0)}</text>
+        <text x={265} y={cy + 10} textAnchor="middle" fill="var(--text3)" fontSize={10}>{fv(max)}</text>
       </svg>
       {thresholds.length > 0 && (
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginTop: 4 }}>
-          {sorted.map((t, i) => <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: '#8b92a8' }}>
+          {sorted.map((t, i) => <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: 'var(--text2)' }}>
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: t.color }} />{t.label}: {fv(t.value)}+
           </div>)}
         </div>
@@ -280,17 +280,17 @@ const renderSparkline = (data) => {
     <div>
       <div className="preview-note">⚠ Preview mode — rendered at 80px (spec: 24–40px when embedded in a Metric Card)</div>
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 20 }}>
-        {[{ l: 'Current', v: last, c: '#e8eaf0' }, { l: 'Peak', v: max, c: '#22c78a' }, { l: 'Trough', v: min, c: '#ef4444' }, { l: 'Trend', v: last >= first ? '▲ Up' : '▼ Down', c: last >= first ? '#22c78a' : '#ef4444' }].map((s, i) => (
-          <div key={i} style={{ background: '#181b23', border: '1px solid #252935', borderRadius: 10, padding: '12px 16px' }}>
+        {[{ l: 'Current', v: last, c: 'var(--text)' }, { l: 'Peak', v: max, c: '#22c78a' }, { l: 'Trough', v: min, c: '#ef4444' }, { l: 'Trend', v: last >= first ? '▲ Up' : '▼ Down', c: last >= first ? '#22c78a' : '#ef4444' }].map((s, i) => (
+          <div key={i} style={{ background: '#181b23', border: '1px solid var(--border)', borderRadius: 10, padding: '12px 16px' }}>
             <div style={{ fontFamily: 'Syne,sans-serif', fontSize: 20, fontWeight: 800, color: s.c }}>{typeof s.v === 'number' ? s.v.toLocaleString() : s.v}</div>
-            <div style={{ fontSize: 9.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', marginTop: 3 }}>{s.l}</div>
+            <div style={{ fontSize: 9.5, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace', marginTop: 3 }}>{s.l}</div>
           </div>
         ))}
       </div>
-      <div style={{ padding: '12px', background: '#181b23', borderRadius: 10, border: '1px solid #252935' }}>
+      <div style={{ padding: '12px', background: '#181b23', borderRadius: 10, border: '1px solid var(--border)' }}>
         <SparklineInline data={nums} color={color} height={80} showEndDot={showEndDot} />
       </div>
-      <div style={{ fontSize: 10.5, color: '#5a6075', marginTop: 8, fontFamily: 'JetBrains Mono,monospace', textAlign: 'center' }}>
+      <div style={{ fontSize: 10.5, color: 'var(--text3)', marginTop: 8, fontFamily: 'JetBrains Mono,monospace', textAlign: 'center' }}>
         {nums.length} points · min {min.toLocaleString()} · max {max.toLocaleString()}
       </div>
     </div>
@@ -317,18 +317,18 @@ const renderHeatmap = (data) => {
     <div style={{ overflowX: 'auto' }}>
       <div style={{ display: 'flex', gap: 4, marginBottom: 8 }}>
         <div style={{ width: 16, display: 'flex', flexDirection: 'column', gap: 3, paddingTop: 18 }}>
-          {dayLabels.map((d, i) => <div key={i} style={{ height: 16, fontSize: 9, color: '#5a6075', textAlign: 'center', lineHeight: '16px', fontFamily: 'JetBrains Mono,monospace' }}>{i % 2 === 0 ? d : ''}</div>)}
+          {dayLabels.map((d, i) => <div key={i} style={{ height: 16, fontSize: 9, color: 'var(--text3)', textAlign: 'center', lineHeight: '16px', fontFamily: 'JetBrains Mono,monospace' }}>{i % 2 === 0 ? d : ''}</div>)}
         </div>
         {grid.map((week, wi) => (
           <div key={wi} style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             <div style={{ height: 14 }} />
             {week.map((d, di) => (
-              <div key={di} title={d ? `${d}: ${lookup[d] || 0}` : ''} style={{ width: 16, height: 16, borderRadius: 3, background: d ? getC(lookup[d]) : '#181b23', border: '1px solid #252935', opacity: d ? 1 : 0.25, cursor: d ? 'pointer' : 'default' }} />
+              <div key={di} title={d ? `${d}: ${lookup[d] || 0}` : ''} style={{ width: 16, height: 16, borderRadius: 3, background: d ? getC(lookup[d]) : '#181b23', border: '1px solid var(--border)', opacity: d ? 1 : 0.25, cursor: d ? 'pointer' : 'default' }} />
             ))}
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8, fontSize: 10, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8, fontSize: 10, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace' }}>
         Less {[0, .2, .4, .6, .8, 1].map((v, i) => <div key={i} style={{ width: 14, height: 14, borderRadius: 2, background: `rgba(91,106,240,${0.1 + v * 0.85})` }} />)} More
       </div>
     </div>
@@ -372,9 +372,9 @@ const renderWaterfall = (data) => {
         <Tooltip content={({ active, payload, label }) => {
           if (!active || !(payload && payload.length)) return null;
           const d = cd.find(c => c.name === label);
-          return <div style={{ background: '#181b23', border: '1px solid #252935', borderRadius: 8, padding: '9px 13px', fontSize: 12 }}>
-            <div style={{ color: '#8b92a8', marginBottom: 4 }}>{label}</div>
-            <div style={{ color: '#e8eaf0', fontWeight: 600 }}>{fmtY(d && d.raw)}</div>
+          return <div style={{ background: '#181b23', border: '1px solid var(--border)', borderRadius: 8, padding: '9px 13px', fontSize: 12 }}>
+            <div style={{ color: 'var(--text2)', marginBottom: 4 }}>{label}</div>
+            <div style={{ color: 'var(--text)', fontWeight: 600 }}>{fmtY(d && d.raw)}</div>
           </div>;
         }} />
         <Bar dataKey="base" fill="transparent" stackId="a" />
@@ -393,7 +393,7 @@ const renderLeaderboard = (data) => {
   const fv = v => formatVal(v, format);
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 10.5, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 10.5, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace' }}>
         <span>Rank · Name</span><span>{metric}</span>
       </div>
       {entries.map((e, i) => {
@@ -401,12 +401,12 @@ const renderLeaderboard = (data) => {
         return (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ width: 22, height: 22, borderRadius: '50%', background: `rgba(91,106,240,${0.15 + i * 0.02})`, border: '1px solid rgba(91,106,240,.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10.5, fontWeight: 700, color: '#7c8fff', fontFamily: 'JetBrains Mono,monospace', flexShrink: 0 }}>{e.rank || i + 1}</div>
-            <div style={{ width: 100, fontSize: 11.5, color: '#8b92a8', textAlign: 'right', flexShrink: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{e.label}</div>
+            <div style={{ width: 100, fontSize: 11.5, color: 'var(--text2)', textAlign: 'right', flexShrink: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{e.label}</div>
             <div style={{ flex: 1, height: 28, background: '#181b23', borderRadius: 6, overflow: 'hidden', position: 'relative' }}>
               <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${pct}%`, background: `rgba(91,106,240,${intensity})`, borderRadius: 6, transition: 'width .6s ease' }} />
-              <div style={{ position: 'absolute', right: 8, top: 0, bottom: 0, display: 'flex', alignItems: 'center', fontSize: 11, color: '#e8eaf0', fontFamily: 'JetBrains Mono,monospace', fontWeight: 600 }}>{fv(e.value)}</div>
+              <div style={{ position: 'absolute', right: 8, top: 0, bottom: 0, display: 'flex', alignItems: 'center', fontSize: 11, color: 'var(--text)', fontFamily: 'JetBrains Mono,monospace', fontWeight: 600 }}>{fv(e.value)}</div>
             </div>
-            {e.meta && <div style={{ fontSize: 10, color: '#5a6075', fontFamily: 'JetBrains Mono,monospace', flexShrink: 0 }}>{e.meta}</div>}
+            {e.meta && <div style={{ fontSize: 10, color: 'var(--text3)', fontFamily: 'JetBrains Mono,monospace', flexShrink: 0 }}>{e.meta}</div>}
           </div>
         );
       })}

@@ -344,7 +344,13 @@ const App = () => {
   const [error, setError] = useState(null);
   const [rendering, setRendering] = useState(false);
   const [canvasTab, setCanvasTab] = useState('preview');
+  const [isDark, setIsDark] = useState(true);
   const fileRef = useRef();
+
+  // Apply theme to root element whenever isDark changes
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   // Auto-load preset when a component is selected
   useEffect(() => {
@@ -403,6 +409,17 @@ const App = () => {
         <div className="h-space" />
         <div className="status-dot" />
         <span className="status-lbl">React 18 · Recharts 2.12 · D3 7.8</span>
+        <div className="h-div" />
+        <button
+          className={`theme-toggle ${isDark ? 'dark' : 'light'}`}
+          onClick={() => setIsDark(d => !d)}
+          title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+        >
+          <span className="theme-toggle-track">
+            <span className="theme-toggle-thumb" />
+          </span>
+          <span className="theme-toggle-label">{isDark ? '🌙 Dark' : '☀️ Light'}</span>
+        </button>
       </header>
 
       {/* ── Sidebar ── */}
